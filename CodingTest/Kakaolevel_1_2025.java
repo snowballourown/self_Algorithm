@@ -1,6 +1,7 @@
 
+package CodingTest;
 
-class Solution {
+class Kakaolevel_1_2025 {
 
     int gcd(int a, int b) {  // 두 수를 동시에 나눌 수 있는 가장 큰 수  //최대 공약수찾기
         while (b != 0) {
@@ -36,10 +37,12 @@ class Solution {
                 int cycle = G + Y + R; // 해당 값의 사이클을 저장
                 int time = (t - 1) % cycle + 1; //사이클 초기화 시켜주는과정
 
+
                 if (!(time > G && time <= G + Y)) {
                     allYellow = false;
                     break;
                 }
+
             }
 
             if (allYellow) return t;
