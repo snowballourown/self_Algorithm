@@ -6,44 +6,55 @@ import java.util.Queue;
 public class game_short_distance_BFS {
 
     public int solution(int[][] maps) {
-        int n = maps.length;
-        int m = maps[0].length;
 
-        // 이동 방향 (상, 하, 좌, 우)
-        int[] dx = {-1, 1, 0, 0};
-        int[] dy = {0, 0, -1, 1};
+        //최대한 빨리 도착하는 것이 유리함 -> 최단거리인뎨? BFS로가야지
+        //갈수있는곳과 갈수없는 곳을 체크해야겠네? -> 그리고 방문했던곳을 가면안되고
 
         Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[]{0, 0, 1}); // x, y, 거리
-
-        boolean[][] visited = new boolean[n][m];
+        queue.offer(new int[]{0, 0, 1});  // 초기값을 설정함
+        int n = maps.length;
+        int m = maps[0].length;
+        boolean[][]visited = new boolean[n][m];
+        int []dx = {1, -1, 0, 0};
+        int []dy = {0,0,1,-1};
         visited[0][0] = true;
 
         while (!queue.isEmpty()) {
-            int[] cur = queue.poll();
+            int []cur = queue.poll();
             int x = cur[0];
             int y = cur[1];
-            int dist = cur[2];
+            int dis = cur[2];
 
-            // 도착
             if (x == n - 1 && y == m - 1) {
-                return dist;
+                return dis;
             }
 
-            for (int i = 0; i < 4; i++) { // 상하좌우 다 한번씩ㄱ가봄
-                int nx = x + dx[i]; //  좌표 더함 (1,-1,0,0)
-                int ny = y + dy[i]; // 좌표더함 (0,0,1,-1)
 
-                // 범위 체크 + 길 + 방문 안한 곳
-                if (nx >= 0 && ny >= 0 && nx < n && ny < m) { // n,m를 초과하지않게
-                    if (maps[nx][ny] == 1 && !visited[nx][ny]) { // 갈수있는길인가 check + 왔던곳인가를 체크
-                        visited[nx][ny] = true; // 왔던곳인걸 체크하고
-                        queue.offer(new int[]{nx, ny, dist + 1}); // 가도되는길이기에 ㄱㄱ
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx < n  && ny < m && 0 <= nx && 0 <= ny)
+                {
+                    if (!visited[nx][ny] && maps[nx][ny] == 1) {
+                        visited[nx][ny] = true;
+                        queue.offer(new int []{nx, ny, dis + 1});
                     }
                 }
             }
+
         }
 
-        return -1; // 도달 불가
+
+
+
+
+
+        return -1;
     }
+
+
+
+
+
+
 }
