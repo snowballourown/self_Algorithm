@@ -29,13 +29,10 @@ public class P1919 {
         }
 
         int cnt = 0 ;
-            for (int j = 0; j < 26; j++) {
+        for (int j = 0; j < 26; j++) {
                 cnt += Math.abs(num1[0][j] - num1[1][j]);
-            }
-
+        }
         System.out.println(cnt);
-
-
 
 
     }
