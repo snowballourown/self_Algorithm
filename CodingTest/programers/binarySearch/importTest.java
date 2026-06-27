@@ -34,7 +34,7 @@ public class importTest {
                     left = mid + 1;
                 }
 
-                }
+            }
 
             return answer;
             }
@@ -45,47 +45,3 @@ public class importTest {
 
         }
     }
-
-    // 너무 오레걸림
-    class Solution_1 {
-
-        class Node implements Comparable<Node> {
-            int sum;
-            int time;
-
-            @Override
-            public int compareTo(Node o) {
-                if (this.sum == o.sum) {
-                    return this.time - o.time;
-                }
-                return this.sum - o.sum;
-            }
-        }
-
-        public long solution(int n, int[] times) {
-            Node[] nodes = new Node[times.length];
-
-            for (int i = 0; i < times.length; i++) {
-                nodes[i] = new Node();
-                nodes[i].sum = 0;
-                nodes[i].time = times[i];
-            }
-
-            int count = 0;
-
-            while (n > count) {
-                Arrays.sort(nodes);
-                nodes[0].sum += nodes[0].time;
-                count++;
-            }
-
-            long answer = 0;
-            for (Node node : nodes) {
-                answer = Math.max(answer, node.sum);
-            }
-
-            return answer;
-        }
-    }
-
-}

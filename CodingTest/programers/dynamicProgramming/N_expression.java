@@ -1,4 +1,47 @@
 package CodingTest.programers.dynamicProgramming;
 
+import java.util.*;
+
+
+
 public class N_expression {
+    public int solution(int N, int number) {
+        // N을 i번 사용해서 나온 수 => dp[i] 에 저장
+        List<Set<Integer>> dp = new ArrayList<>();
+
+        for(int i = 0; i <= 8; i++) {
+            dp.add(new HashSet<>());
+        }
+
+        for(int i = 1; i <= 8; i++) {
+            // 5, 55, 555 ....
+            int repeatN = Integer.parseInt(String.valueOf(N).repeat(i)); //
+            dp.get(i).add(repeatN); // 5,55, 투입
+
+            // 사칙연산으로 찾기
+            for (int j = 1; j < i; j++) {
+                for (int a: dp.get(j)) { // j개
+                    for (int b : dp.get(i - j)) { // i-j개 만들어서 만들수있는 경우의 수 더하기
+                        // +
+                        dp.get(i).add(a + b);
+                        // -
+                        dp.get(i).add(a - b);
+                        dp.get(i).add(b - a);  // 이렇게 해서 음수를 왜더하느냐? 음수로 더 짧게 목표값에 도달할 수있기
+                        // 때문임  그래서 음수도 같이 포함시킴
+                        dp.get(i).add(a * b);
+                        // /
+                        if (b != 0) dp.get(i).add(a / b);
+                        if (a != 0) dp.get(i).add(b / a);
+                    }
+                }
+            }
+
+            if (dp.get(i).contains(number))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }
