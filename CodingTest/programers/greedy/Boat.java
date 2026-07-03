@@ -9,29 +9,32 @@ public class Boat {
 
         ArrayList<Integer> arrayList = new ArrayList<>();
 
-        for (Integer integer : arrayList) {
-            arrayList.add(integer);
+
+        for (int person : people) {
+            arrayList.add(person);
         }
 
 
-        Collections.sort(arrayList);
-
-
         int left = 0;
-        int right = arrayList.size() - 1;
-        int count = 0;
+        int right = people.length - 1;
+        int count = 0 ;
 
 
+        Collections.sort( arrayList);
         while (left <= right) {
 
-            if (arrayList.get(left) + arrayList.get(right) <= limit) {
+            if (limit > (arrayList.get(left) + arrayList.get(right))) {
                 left++;
             }
 
             right--;
-            count++;
+           count++;
+
+
         }
 
         return count;
+
+
     }
 }

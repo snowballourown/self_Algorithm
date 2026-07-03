@@ -1,7 +1,7 @@
 package CodingTest.programers.completedsearch;
 import java.util.*;
 
-class Solution {
+class netWorkTwo {
 
     ArrayList<Integer>[] graph; // 배열마다 list가 있는거임
     boolean[] visited;
