@@ -34,6 +34,7 @@ public class MaxPrize {
     static void dfs(int depth) {
         String state = new String(numbers);
 
+
         if (visited.contains(depth + " " + state)) {   // depth가 지금까지 교환한 횟수  state 현재 상태숫자열
             return;             //visited를 set으로 설정해서 보유시 확인하지말고 바로 리턴
         }
@@ -45,7 +46,7 @@ public class MaxPrize {
             return;
         }
 
-        for (int i = 0; i < numbers.length - 1; i++) {   // 여기서 720가지 나오는거임
+        for (int i = 0; i < numbers.length - 1; i++) {   // 여기서 720가지 나오는거임 실제로  엄청 많이나오는데 컷이 되는거임
             for (int j = i + 1; j < numbers.length; j++) {
                 swap(i, j);             //number배열에 i,j 교환
                 dfs(depth + 1);
@@ -68,7 +69,8 @@ public class MaxPrize {
 
 
     // 여기선 나는 greedy로 풀다가 막힘  기회가 하나일떈 풀수있었는데 바꿀기회가 2개이상부턴 못풀겠음
-
+    // 자리를 바꿀 수 있는 기회 11번 6개의 자리중에 2개를 선택해서 바꾸는 경우
+    // 15가지 이어떤숫자가올지모르니까 경우의수를 720가지로 잡아서 이렇게 계산함
 
 
 }
