@@ -1,44 +1,45 @@
 package CodingTest.SWEA;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ProductGet {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
+
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-
-        int T = Integer.parseInt(br.readLine());
-
-        for (int tc = 1; tc <= T; tc++) {
+        int TC = Integer.parseInt(br.readLine());
+        for (int i = 0; i < TC; i++) {
             int N = Integer.parseInt(br.readLine());
-            int[][] farm = new int[N][N];
+            int[][] number = new int[N][N];
 
-            for (int i = 0; i < N; i++) {
-                String line = br.readLine();
-
-                for (int j = 0; j < N; j++) {
-                    farm[i][j] = line.charAt(j) - '0';
+            for (int j = 0; j < N; j++) {
+                String string= br.readLine();
+                for (int k = 0; k < N; k++) {
+                    number[j][k]= string.charAt(k) - '0'; //
                 }
             }
 
-            int mid = N / 2; // 행의 중심 부분
-            int sum = 0;
-
+            int center  = N/2;
+            int sum =0;
             for (int row = 0; row < N; row++) {
-                int dist = Math.abs(mid - row); //
+                int dist = Math.abs(center - row); // row가 커질시점부터는 중앙을 지나기에 그다음을 생각하면됨
+                int end = N -1 - dist; // 뒤에서 dist만큼  뺴는거임
 
-                int start = dist;       // 행의 도입부분
-                int end = (N - 1)- dist; // 행의 개수의 마지막
-
-                for (int col = start; col <= end; col++) {
-                    sum += farm[row][col];
+                for (int colum = dist; colum <= end; colum++) {
+                    sum += number[row][colum];
                 }
+
             }
 
-            sb.append("#").append(tc).append(" ").append(sum).append("\n");
-        }
 
-        System.out.print(sb);
+            sb.append("#" + (i + 1) + " " + sum + "\n");
+
+
+
+        }
+        System.out.println(sb);
     }
 }
