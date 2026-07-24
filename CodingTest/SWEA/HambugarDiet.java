@@ -52,14 +52,12 @@ public class HambugarDiet {
 
 
         if ( currentSum > L) {
-            return;
-        }
+            return;          }
 
 
         if (j == N) {
             max = Math.max(max, scoreSum);
-            return;
-        }
+            return; }
 
         BackTracking(j + 1, currentSum + num[j][1], scoreSum + num[j][0]);
         BackTracking(j + 1, currentSum , scoreSum);

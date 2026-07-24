@@ -16,11 +16,11 @@ public class N_Queen {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int answer =0;
         int TC = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < TC; i++) {
              N = Integer.parseInt(br.readLine());
+            answer =0;
 
             col = new boolean[N];
             diag1 = new boolean[2 * N - 1];// 최대값이 row 와 col n-1 n-1  2n-2
