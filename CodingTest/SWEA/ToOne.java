@@ -30,27 +30,28 @@ public class ToOne {
 
             boolean[] visited = new boolean[N];
             long[] minDist = new long[N];
-            Arrays.fill(minDist, Long.MAX_VALUE);
+            Arrays.fill(minDist, Long.MAX_VALUE); //최대값으로 다채움
 
             minDist[0] = 0; // 0부터 시작하니까 0끼리는 인듯
             long total = 0;
 
             for (int i = 0; i < N; i++) {
+
                 int minIndex = -1;
-                long minValue = Long.MAX_VALUE;
+                long minValue = Long.MAX_VALUE; //초기화
 
                 for (int j = 0; j < N; j++) {
-                    if (!visited[j] && minDist[j] < minValue) { //방문하지않아쓰면서 거리가 최소인것들을 찾는거임
-                        minValue = minDist[j]; // 맨터음에 minvalue다시 0으로등ㄹ어감
+                    if (!visited[j] && minDist[j] < minValue) { //방문하지 않아쓰면서 거리가 최소인것들을 찾는거임
+                        minValue = minDist[j]; // 맨터음에 minvalue다시 0으로 들어감
                         minIndex = j; // 0
                     }
                 }
 
                 visited[minIndex] = true;
-                total += minValue;
+                total += minValue; // 굳이 따지면 이순간에 이동하는거로 생각하면되겠네
 
                 for (int j = 0; j < N; j++) {
-                    if (!visited[j]) { // 아직 방문하지않은곳을 찾는다
+                    if (!visited[j]) { //새로 추가된 index에 가서 길이를 잰다 그리고 최소길이이라면 기록한다.
                         long dx = x[minIndex] - x[j];  // x 축차이
                         long dy = y[minIndex] - y[j]; // y축차이
                         long dist = dx * dx + dy * dy;
