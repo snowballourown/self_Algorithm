@@ -43,8 +43,6 @@ public class loadFind {
 
             DFS(0);
 
-            ;
-
 
             sb.append("#" + tc + " " + answer+ "\n");
 
