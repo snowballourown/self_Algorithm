@@ -1,7 +1,5 @@
-package CodingTest.programers.completedsearch;
+package CodingTest.programers.sort;
 
-
-import java.util.Arrays;
 
 public class H_index {
 
