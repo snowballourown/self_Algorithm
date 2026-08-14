@@ -35,20 +35,20 @@ class bestAlbem_reply {
 
             CountGenres.put(genres[i], CountGenres.getOrDefault(genres[i], 0) + plays[i]);
 
-            //song장르가  부재이면 해당장르를 추가하고 배열리스트를 만들어서 song을 만들어서 짚어넣ㅇ는거임
-            // 만약 gener가있었다면 list를 새로 만들지 않고 그냥  새로운 song을 만들고 추가만 했을거임
+            //song장르가  부재이면 해당장르를 추가하고 배열리스트를 만들어서 song을 만들어서 짚어넣은 거임
+            // 만약 gener가 있었다면 list를 새로 만들지 않고 그냥  새로운 song을 만들고 추가만 했을거임
             SongGenres.computeIfAbsent(genres[i], k -> new ArrayList<>()).add(new Song(i, plays[i]));
-        }
-        // 부록에 새로 넣어야겠지?
 
+        }
+
+        // 부록에 새로 넣어야겠지?
         // 리스트는 어케 해야되는지 모르겠음
         // 그냥 list를 먼저 만져보고 해보자
 
         List<String> songs = new ArrayList<>(CountGenres.keySet());
-        songs.sort((a, b) -> CountGenres.get(b).compareTo(CountGenres.get(a)));
+        songs.sort((a, b) -> CountGenres.get(b).compareTo(CountGenres.get(a))); // 내림차순으로 정리 count
+
         // 내림차순으로해서 비교하면서  미친거지
-
-
         List<Integer> result = new ArrayList<>();
 
 
@@ -59,9 +59,9 @@ class bestAlbem_reply {
 
             songs1.sort((a, b) -> {
                 if (a.play == b.play) {
-                    return a.id - b.id; // 더작은애를 내보내야하는데
+                    return a.id - b.id; // 고유번호 더작은녀석이 더작은애를 내보내야하는데
                 }
-                return b.play - a.play;
+                return b.play - a.play; //
             });
 
 

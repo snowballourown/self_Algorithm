@@ -32,6 +32,7 @@ public class bestAlbem {
     }
 
     public int[] solution(String[] genres, int[] plays) {
+
         // 1. 장르별 총 재생 횟수 (장르 정렬용)
         Map<String, Integer> genrePlayCount = new HashMap<>();
         // 2. 장르별 곡 리스트 (곡 정렬 및 추출용)
@@ -39,31 +40,26 @@ public class bestAlbem {
 
         for (int i = 0; i < genres.length; i++) {
             genrePlayCount.put(genres[i], genrePlayCount.getOrDefault(genres[i], 0) + plays[i]);
-
-            // 아까 질문하셨던 부분! 리스트가 없으면 새로 만들고 곡 정보를 넣습니다.
+            // 아까 질문하셨던 부분! 리스트가 없으면 새로 만들고 곡 정보를 넣습니다. // key값을 받으면 list 내놓네
             genreSongs.computeIfAbsent(genres[i], k -> new ArrayList<>()).add(new Song(i, plays[i]));
         }
 
         // 3. 총 재생 횟수 기준 장르 정렬 (내림차순)
-        List<String> sortedGenres = new ArrayList<>(genrePlayCount.keySet());
+        List<String> sortedGenres = new ArrayList<>(genrePlayCount.keySet()); // 장르 배열 저장
         sortedGenres.sort((g1, g2) -> genrePlayCount.get(g2).compareTo(genrePlayCount.get(g1)));
-            // 이걸로배열 잡은거임 대박임 ㄹㅇ 유래카 급
 
-
-
-
+        // 해당 장르의 갯수를 파악해서 순서 입력
         List<Integer> result = new ArrayList<>();
 
-        // 4. 정렬된 장르 순서대로 순회하며 곡 추출ㄸ
+
+        // 4. 정렬된 장르 순서대로 순회하며 곡 추출
         for (String genre : sortedGenres) {
             List<Song> songs = genreSongs.get(genre);
-
             // 장르 내 곡 정렬: 재생수 내림차순 -> 같으면 고유번호 오름차순
             songs.sort((s1, s2) -> {
                 if (s1.play == s2.play) return s1.id - s2.id;
                 return s2.play - s1.play;
             });
-
             // 최대 2개까지만 결과 리스트에 담기
             for (int i = 0; i < songs.size() && i < 2; i++) {
                 result.add(songs.get(i).id);
@@ -72,6 +68,7 @@ public class bestAlbem {
 
         // List를 배열로 변환하여 반환
         return result.stream().mapToInt(i -> i).toArray();
+
     }
 }
 
