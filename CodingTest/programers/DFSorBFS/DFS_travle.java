@@ -12,7 +12,7 @@ class Solution {
         visited = new boolean[tickets.length];
 
         // 도착지 기준 정렬 (사전순)
-        Arrays.sort(tickets, (a, b) -> a[1].compareTo(b[1]));
+    Arrays.sort(tickets, (a, b) -> a[1].compareTo(b[1]));
 
         List<String> path = new ArrayList<>();
         path.add("ICN");
