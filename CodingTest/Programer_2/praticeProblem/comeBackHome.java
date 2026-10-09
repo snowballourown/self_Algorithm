@@ -32,7 +32,7 @@ public class comeBackHome {
             int current = queue.poll(); // 목적지를 넣음
 
             for (int next : graph[current]) { // 목적지랑 연결된곳
-                if (distance[next] != -1) {
+                if (distance[next] != -1) { //
                     // 거리가 -1 아니라면 무시
                     // 초기화 한번이라도 됐다면 무시
                     continue;
